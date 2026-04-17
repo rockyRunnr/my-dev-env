@@ -12,9 +12,9 @@
 -- Leader 키 설정
 -- --------------------------------------------------------------------------
 -- Leader 키는 사용자 정의 단축키의 접두사 역할을 합니다.
--- 예: Leader가 ","이면 ",ff"로 파일 검색 실행
-vim.g.mapleader = ","       -- Leader 키를 쉼표(,)로 설정 (기존 .vimrc와 동일)
-vim.g.maplocalleader = ","  -- 파일 타입별 로컬 Leader도 동일하게 설정
+-- 예: Leader가 Space이면 "Space ff"로 파일 검색 실행
+vim.g.mapleader = " "       -- Leader 키를 Space로 설정
+vim.g.maplocalleader = " "  -- 파일 타입별 로컬 Leader도 동일하게 설정
 
 local map = vim.keymap.set  -- 타이핑 줄이기 위한 별칭
 local opts = { noremap = true, silent = true }  -- 기본 옵션: 재귀 매핑 방지, 출력 숨김
@@ -44,11 +44,13 @@ map("n", "<C-l>", "<C-w>l", { desc = "오른쪽 창으로 이동" })
 map("n", "<Esc><Esc>", ":nohlsearch<CR>", { desc = "검색 하이라이트 끄기", noremap = true, silent = true })
 
 -- --------------------------------------------------------------------------
--- 줄 이동 (Visual 모드에서)
+-- 줄 이동 비활성화
 -- --------------------------------------------------------------------------
--- Visual 모드에서 선택한 줄을 위/아래로 이동
-map("v", "J", ":m '>+1<CR>gv=gv", { desc = "선택 줄을 아래로 이동" })
-map("v", "K", ":m '<-2<CR>gv=gv", { desc = "선택 줄을 위로 이동" })
+-- Alt+j/k 줄 이동 비활성화 (ESC+j 오입력으로 코드 줄 스왑 방지)
+for _, mode in ipairs({ "n", "i", "v" }) do
+  map(mode, "<A-j>", "<Nop>", { desc = "" })
+  map(mode, "<A-k>", "<Nop>", { desc = "" })
+end
 
 -- --------------------------------------------------------------------------
 -- 들여쓰기 유지

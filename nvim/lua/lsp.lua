@@ -138,9 +138,9 @@ local on_attach = function(client, bufnr)
   bmap("n", "gt", vim.lsp.buf.type_definition, "타입 정의로 이동")
 
   -- 코드 탐색 (Leader 키맵 - 기존 .vimrc 습관 유지)
-  bmap("n", "<leader>d", vim.lsp.buf.definition, "정의로 이동 (,d)")
-  bmap("n", "<leader>r", vim.lsp.buf.references, "참조 찾기 (,r)")
-  bmap("n", "<leader>i", vim.lsp.buf.implementation, "구현으로 이동 (,i)")
+  bmap("n", "<leader>d", vim.lsp.buf.definition, "정의로 이동 (Space d)")
+  bmap("n", "<leader>r", vim.lsp.buf.references, "참조 찾기 (Space r)")
+  bmap("n", "<leader>i", vim.lsp.buf.implementation, "구현으로 이동 (Space i)")
 
   -- 정보 표시
   bmap("n", "K", vim.lsp.buf.hover, "호버 정보 (타입, 문서)")
