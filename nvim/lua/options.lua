@@ -87,16 +87,4 @@ opt.updatetime = 250     -- 커서 멈춘 후 250ms 뒤에 이벤트 발생 (기
 opt.timeoutlen = 300     -- 키 매핑 조합 대기 시간 (300ms)
 opt.visualbell = true    -- 비프음 대신 화면 깜빡임
 
--- --------------------------------------------------------------------------
--- 후행 공백 하이라이트 (빨간색으로 표시)
--- --------------------------------------------------------------------------
--- 줄 끝의 불필요한 공백을 빨간색으로 강조합니다.
--- HANA 코드 리뷰(CheckBot)에서 후행 공백은 에러로 잡히므로 유용합니다.
-vim.cmd([[
-  highlight ExtraWhitespace ctermbg=red guibg=red
-  match ExtraWhitespace /\s\+$/
-  autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-  autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-  autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-  autocmd BufWinLeave * call clearmatches()
-]])
+-- 후행 공백 하이라이트 끔 (CheckBot은 커밋 전에 별도 실행)
